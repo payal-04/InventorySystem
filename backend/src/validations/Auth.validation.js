@@ -1,15 +1,16 @@
-const {body} = require("express-validator")
+const { body } = require("express-validator");
 
-class Authvalidation{
-
-   static RegisterUser = [
-         body("name").notEmpty().withMessage("Name cannot be empty"),
-         body("email").isEmail().withMessage("Email must be Valid"),
-         notEmpty().withMessage("Name cannot be Empty"),
-         body("password").isLength({min:8}).withMessage("Password must have minimum8 characters").notEmpty().withMessage("Password is required")
-   ]
-
-
+class Authvalidation {
+  static RegisterUser = [
+    body("name")
+      .notEmpty().withMessage("Name cannot be empty"),
+    body("email")
+      .notEmpty().withMessage("Email cannot be Empty")
+      .isEmail().withMessage("Email must be Valid"),
+    body("password")
+      .notEmpty().withMessage("Password is required")
+      .isLength({ min: 8 }).withMessage("Password must have minimum 8 characters"),
+  ];
 }
 
-modules.exports = Authvalidation
+module.exports = Authvalidation;
