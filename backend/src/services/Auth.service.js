@@ -33,7 +33,7 @@ class AuthService{
 
    }
 
-   static async LoginUser(body){
+   static async ProfileServiceI(user){
      const {email,password,name} = body
        
      const checkExist = await UserModel.findOne({email})
@@ -55,6 +55,20 @@ class AuthService{
       return{
         msg: "User Login Successfully!",
         token: token
+      }
+
+   }
+
+   static async LoginUser(body){
+    const checkExist = await UserModel.findById(user).select("name email")
+    if(!checkExist){
+      throw new ApiError(httpStatus.BAD_REQUEST,"User not Registered!")
+      return
+    }
+
+      return{
+        msg: "Data Fetched!",
+        user: checkExist
       }
 
    }

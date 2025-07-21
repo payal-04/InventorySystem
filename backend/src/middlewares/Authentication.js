@@ -26,3 +26,5 @@ const Authentication = (req,res,next)=>{
         next(error)
     }
 }
+
+module.exports = Authentication
