@@ -46,11 +46,11 @@ class AuthService{
 
       if(password !== checkExist.password)
       {
-         throw new ApiError(httpStatus.BAD_REQUEST,"Inavalid Credentials!")
+         throw new ApiError(httpStatus.BAD_REQUEST,"Invalid Credentials!")
          return
       }
 
-      const token = generateToken(user)
+      const token = generateToken(checkExist)
 
       return{
         msg: "User Login Successfully!",
