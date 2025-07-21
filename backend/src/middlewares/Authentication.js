@@ -19,6 +19,8 @@ const Authentication = (req,res,next)=>{
        }
 
       const data = validateToken(auth_token)
+      req.user = data.userid;
+      next()
 
     } catch (error) {
         next(error)
