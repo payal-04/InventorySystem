@@ -1,6 +1,7 @@
 const { UserModel, ProfileModel } = require("../models")
 const ApiError = require("../utils/ApiError")
 const httpStatus = require("http-status")
+const { generateToken } = require("../utils/Token.utils")
 
 class AuthService{
    static async RegisterUser(body){
@@ -17,12 +18,17 @@ class AuthService{
           email,password,name
       })
 
+      const token = generateToken(user)
+      const refresh_token = generateToken(user,'2d')
+
       await ProfileModel.create({
-           user: user._id
+           user: user._id,
+           refresh_token
       })
+
       return{
         msg: "User Registered Successfully!",
-        token: ''
+        token: token
       }
 
    }
@@ -44,9 +50,11 @@ class AuthService{
          return
       }
 
+      const token = generateToken(user)
+
       return{
         msg: "User Login Successfully!",
-        token: ''
+        token: token
       }
 
    }

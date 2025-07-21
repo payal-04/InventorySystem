@@ -11,6 +11,6 @@ return token
     
 
 exports.validateToken = (token)=>{
-    const token = jwt.verify(token, PUBLIC_DATA.jwt_auth)
-    return token
+    const tokens = jwt.verify(token, PUBLIC_DATA.jwt_auth)
+    return tokens
 }
